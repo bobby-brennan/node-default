@@ -3,18 +3,17 @@ var AssetMan = require('bb-asset-manager');
 
 var CORE_JS = [
   "bower/jquery/dist/jquery.min.js",
-  "static/css/bootstrap.css",
+  "bower/bootstrap/dist/js/bootstrap.min.js",
   "bower/angular/angular.min.js",
 ]
 var CORE_CSS = [
-  "less/styles.css",
-  "bower/fontawesome/css/font-awesome.min.css",
+  "css/bootstrap.css",
+  "bower/font-awesome/css/font-awesome.min.css",
 ]
 
-var assetManager = new AssetMan({
-  useOriginalAssets: options.development,
+var assetManager = module.exports = new AssetMan({
+  useOriginalAssets: process.env.DEVELOPMENT,
   staticDirectory: __dirname + '/static',
-  basePath: options.basePath,
   js: {
     outputDirectory: 'minified/js',
   },
@@ -28,6 +27,12 @@ assetManager.addCSS('core', {
 })
 assetManager.addJS('core', {
   files: CORE_JS,
+})
+assetManager.addCSS('home', {
+  files: ['static/css/home.css'],
+})
+assetManager.addJS('home', {
+  files: ['static/js/home.js'],
 })
 
 

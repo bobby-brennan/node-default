@@ -1,3 +1,4 @@
+var FS = require('fs');
 var Strapping = require('strapping');
 var Express = require('express');
 
@@ -24,7 +25,7 @@ if (process.env.DEVELOPMENT) {
 FS.readdirSync(__dirname + '/routes').forEach(function(route) {
   var path = '/' + route.substring(0, route.length - 3);
   if (path === '/pages') path = '/';
-  App.use(path, require('./routes/' + route);
+  App.use(path, require('./routes/' + route));
 });
 
 App.listen('3000');
